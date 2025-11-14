@@ -2,3 +2,4 @@ venv/
 .vscode/
 .env
 faiss_index/
+chroma_db/
