@@ -16,3 +16,10 @@ faiss-cpu
 langchain_chroma
 streamlit
 langchain_core
+mlflow
+scikit-learn
+pandas 
+numpy
+keras
+tensorflow
+hyperopt
