@@ -3,3 +3,5 @@ venv/
 .env
 faiss_index/
 chroma_db/
+mlruns/
+mlartifacts/
