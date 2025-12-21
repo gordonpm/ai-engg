@@ -23,3 +23,7 @@ numpy
 keras
 tensorflow
 hyperopt
+torch
+torchvision
+gradio
+tqdm
