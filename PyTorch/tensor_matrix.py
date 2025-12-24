@@ -9,3 +9,5 @@ X1 = torch.tensor([
 print(X1.shape)
 print(X1[2])
 print(X1[0][0].item())
+
+print(X1[:, 1])
