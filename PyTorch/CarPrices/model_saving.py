@@ -1,8 +1,8 @@
 import sys
+import os
 import pandas as pd
 import torch
 from torch import nn
-import matplotlib.pyplot as plt
 
 # Pandas: Reading the data
 df = pd.read_csv("../data/used_cars.csv")
@@ -20,19 +20,27 @@ price = price.str.replace("$", "")
 price = price.str.replace(",", "")
 price = price.astype(int)
 
+# create model directory if it does not exist
+if not os.path.isdir("./model"):
+    os.mkdir("./model")
+
 # Torch: Creating X and y data (as tensors)
 X = torch.column_stack([
     torch.tensor(age, dtype=torch.float32),
     torch.tensor(milage, dtype=torch.float32)
 ])
-X_mean = X.mean(axis=0) # column wise mean
-X_std = X.std(axis=0) # column wise std
+X_mean = X.mean(axis=0)
+X_std = X.std(axis=0)
+torch.save(X_mean, "./model/X_mean.pt")
+torch.save(X_std, "./model/X_std.pt")
 X = (X - X_mean) / X_std
 
 y = torch.tensor(price, dtype=torch.float32)\
     .reshape((-1, 1))
 y_mean = y.mean()
 y_std = y.std()
+torch.save(y_mean, "./model/y_mean.pt")
+torch.save(y_std, "./model/y_std.pt")
 y = (y - y_mean) / y_std
 # sys.exit()
 
@@ -41,8 +49,7 @@ model = nn.Linear(2, 1)
 loss_fn = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
-losses = []
-for i in range(0, 250):
+for i in range(0, 2500):
     # Training pass
     optimizer.zero_grad()
     outputs = model(X)
@@ -50,21 +57,7 @@ for i in range(0, 250):
     loss.backward()
     optimizer.step()
 
-    losses.append(loss.item())
     #if i % 100 == 0: 
-    #    print(loss.item())
-    # if i % 100 == 0: 
-    #    print(model.bias)
-    #    print(model.weight)
-print(losses)
-plt.plot(losses)
-plt.show()
+    #    print(loss)
 
-X_data = torch.tensor([
-    [5, 10000],
-    [2, 10000],
-    [5, 20000]
-], dtype=torch.float32)
-
-prediction = model((X_data - X_mean) / X_std)
-print(prediction * y_std + y_mean)
+torch.save(model.state_dict(), "./model/model.pt")

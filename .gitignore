@@ -5,3 +5,4 @@ faiss_index/
 chroma_db/
 mlruns/
 mlartifacts/
+model/
