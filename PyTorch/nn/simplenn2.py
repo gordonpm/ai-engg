@@ -38,3 +38,6 @@ print(f"shape: {untrained_preds.shape}")
 print(f"Length of test samples: {len(y_test)}, Shape: {y_test.shape}")
 print(f"\nFirst 10 predictions:\n{untrained_preds[:10]}")
 print(f"\nFirst 10 test labels:\n{y_test[:10]}")
+
+y_pred_probs = torch.sigmoid(untrained_preds)
+print(f"\nFirst 10 prediction probabilities:\n{y_pred_probs[:10]}")
