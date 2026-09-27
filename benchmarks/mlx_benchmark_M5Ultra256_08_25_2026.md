@@ -5,7 +5,7 @@ python = 3.11.15<br>
 mlx    = 0.32.2<br>
 torch  = 2.13<br>
 
-###Detailed benchmark:
+### Detailed benchmark:
 | Operation                                                                             | mlx_gpu | mlx_gpu_compile | mlx_cpu | mps | cpu | mlx_gpu_compile/mlx_gpu speedup | mlx_gpu/mps speedup | mlx_gpu/mlx_cpu speedup |
 |---------------------------------------------------------------------------------------|-------|---------------|-------|------|------|-------------------------------|-------------------|-----------------------|
 | Argmax / dim=64x1024x128 axi=0                                                    |   1.11 |   1.11 |   7.31 |   0.49 |  10.34 |      0% |    -55% |   +557% |
