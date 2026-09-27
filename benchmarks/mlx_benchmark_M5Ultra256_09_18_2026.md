@@ -1,5 +1,5 @@
 # Benchmark on M5 Ultra (10S+20P+64GPU+256GB)
-## Date: 08/25/2026
+## Date: 09/18/2026
 Software used:<br>
 python = 3.11.15<br>
 mlx    = 0.32.2<br>
